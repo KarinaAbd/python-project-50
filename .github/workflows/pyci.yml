@@ -10,5 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: CI check
-        run: make lint
-        run: make setup
+        run: |
+          make lint
+          make setup
