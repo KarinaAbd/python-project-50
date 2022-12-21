@@ -1,10 +1,10 @@
-lint:
-	poetry run flake8 gendiff
-
-setup: install build publish package-install
+setup: install lint build publish package-install
 
 install:
 	poetry install
+
+lint:
+	poetry run flake8 gendiff
 
 build:
 	poetry build
