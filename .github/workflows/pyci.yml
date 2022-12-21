@@ -9,5 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: CI check
-        run: make setup
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          make install
+      - run: make lint
+      - name: Build and install check
+        run: make check
