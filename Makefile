@@ -1,6 +1,8 @@
 lint:
 	poetry run flake8 gendiff
 
+setup: install build publish package-install
+
 install:
 	poetry install
 
