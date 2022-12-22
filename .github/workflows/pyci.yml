@@ -19,6 +19,6 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: 6606d6b7131c510f527c4a349a939b95890da29df19faafcce63152ff0185012
         with:
-          coverageCommand: poetry run pytest --cov
+          coverageCommand: poetry run pytest --cov --cov-report lcov
       - name: Build and install check
         run: make check
