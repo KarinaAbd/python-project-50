@@ -5,6 +5,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b57b3156f410b50dcbe3/maintainability)](https://codeclimate.com/github/KarinaAbd/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b57b3156f410b50dcbe3/test_coverage)](https://codeclimate.com/github/KarinaAbd/python-project-50/test_coverage)
 
-**How to compare 2 JSON files**  
-Use command *gendiff* and specify pathes to files
+**How to compare 2 files**  
+Use command *gendiff* and specify pathes to files.
+
+JSON files:
 [![asciicast](https://asciinema.org/a/9PaohO3tRGMhaUPewBV9MBT4y.svg)](https://asciinema.org/a/9PaohO3tRGMhaUPewBV9MBT4y)
+
+YAML files:
+[![asciicast](https://asciinema.org/a/trwGqHso92sEKFsz9k4gbU0bs.svg)](https://asciinema.org/a/trwGqHso92sEKFsz9k4gbU0bs)
