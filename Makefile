@@ -7,7 +7,7 @@ lint:
 test:
 	poetry run pytest
 
-check: build publish package-install
+package: build publish package-install
 
 build:
 	poetry build
