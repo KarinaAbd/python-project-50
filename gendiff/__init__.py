@@ -1,5 +1,5 @@
-from gendiff.json_parser import convert_json
-from gendiff.yaml_parser import convert_yaml
+from gendiff.converter_json import convert_json
+from gendiff.converter_yaml import convert_yaml
 from gendiff.parsing import parse
 from gendiff.stylish import format
 
