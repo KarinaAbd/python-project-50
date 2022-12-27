@@ -2,3 +2,6 @@
 __pycache__/
 dist/
 .vscode/
+experimental.py
+exp1.py
+exp2.py
