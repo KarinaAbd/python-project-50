@@ -50,5 +50,5 @@ def walk(diff_dict, level):
     return '\n'.join(result)
 
 
-def format(difference_dictionary):
+def stylish(difference_dictionary):
     return walk(difference_dictionary, 0)
