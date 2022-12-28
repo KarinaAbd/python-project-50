@@ -6,13 +6,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b57b3156f410b50dcbe3/test_coverage)](https://codeclimate.com/github/KarinaAbd/python-project-50/test_coverage)
 
 **How to compare 2 files**  
-Use command *gendiff* and specify pathes to files.
+Use command *gendiff* and specify pathes to files.  
+Files could be in json or yaml formats, data in files could be flat or nested. 
 
-Nested files:
-[![asciicast](https://asciinema.org/a/q67tjT5NEcNHBfLd27jSgpUfU.svg)](https://asciinema.org/a/q67tjT5NEcNHBfLd27jSgpUfU)
-
-JSON files:
-[![asciicast](https://asciinema.org/a/9PaohO3tRGMhaUPewBV9MBT4y.svg)](https://asciinema.org/a/9PaohO3tRGMhaUPewBV9MBT4y)
-
-YAML files:
-[![asciicast](https://asciinema.org/a/trwGqHso92sEKFsz9k4gbU0bs.svg)](https://asciinema.org/a/trwGqHso92sEKFsz9k4gbU0bs)
+[![asciicast](https://asciinema.org/a/Rr5Lj8JmQRIJTXlviyF4oHDsx.svg)](https://asciinema.org/a/Rr5Lj8JmQRIJTXlviyF4oHDsx)
