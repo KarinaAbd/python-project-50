@@ -1,3 +1,4 @@
+
 def walk_unchanged(nest):
     if not isinstance(nest, dict):
         return nest
@@ -19,11 +20,10 @@ def check_type(item1, item2):
     elif isinstance(item1, dict) and not isinstance(item2, dict):
         return [walk_unchanged(item1), item2]
     else:
-        return 'dicts', item1, item2
+        return item1, item2
 
 
 def parse(file1, file2):
-
     def walk(nest1, nest2):
         difference = {}
 
@@ -45,24 +45,21 @@ def parse(file1, file2):
                     'status': 'deleted',
                     'value': walk_unchanged(nest1.get(key))
                 }
+            elif nest1.get(key) == nest2.get(key):
+                difference[key] = {
+                    'status': 'remaining',
+                    'value': walk_unchanged(nest1.get(key))
+                }
+            elif isinstance(check_type(nest1.get(key), nest2.get(key)), tuple):
+                dict1, dict2 = check_type(nest1.get(key), nest2.get(key))
+                difference[key] = {
+                    'status': 'changed',
+                    'value': walk(dict1, dict2)
+                }
             else:
-                if nest1.get(key) == nest2.get(key):
-                    difference[key] = {
-                        'status': 'remaining',
-                        'value': walk_unchanged(nest1.get(key))
-                    }
-                else:
-                    checked_dict = check_type(nest1.get(key), nest2.get(key))
-                    if len(checked_dict) == 3:
-                        _, dict1, dict2 = checked_dict
-                        difference[key] = {
-                            'status': 'changed',
-                            'value': walk(dict1, dict2)
-                        }
-                    else:
-                        difference[key] = {
-                            'status': 'changed',
-                            'value': checked_dict
-                        }
+                difference[key] = {
+                    'status': '2diff_values',
+                    'value': check_type(nest1.get(key), nest2.get(key))
+                }
         return difference
     return walk(file1, file2)
