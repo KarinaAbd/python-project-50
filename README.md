@@ -8,6 +8,9 @@
 **How to compare 2 files**  
 Use command *gendiff* and specify pathes to files.
 
+Nested files:
+[![asciicast](https://asciinema.org/a/q67tjT5NEcNHBfLd27jSgpUfU.svg)](https://asciinema.org/a/q67tjT5NEcNHBfLd27jSgpUfU)
+
 JSON files:
 [![asciicast](https://asciinema.org/a/9PaohO3tRGMhaUPewBV9MBT4y.svg)](https://asciinema.org/a/9PaohO3tRGMhaUPewBV9MBT4y)
 
