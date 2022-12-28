@@ -23,43 +23,45 @@ def check_type(item1, item2):
         return item1, item2
 
 
+def walk(nest1, nest2):
+    difference = {}
+
+    keys1 = set(nest1)
+    keys2 = set(nest2)
+
+    all_keys = keys1 | keys2
+    added = keys2 - keys1
+    deleted = keys1 - keys2
+
+    for key in sorted(all_keys):
+        if key in added:
+            difference[key] = {
+                'status': 'added',
+                'value': walk_unchanged(nest2.get(key))
+            }
+        elif key in deleted:
+            difference[key] = {
+                'status': 'deleted',
+                'value': walk_unchanged(nest1.get(key))
+            }
+        elif nest1.get(key) == nest2.get(key):
+            difference[key] = {
+                'status': 'remaining',
+                'value': walk_unchanged(nest1.get(key))
+            }
+        elif isinstance(check_type(nest1.get(key), nest2.get(key)), tuple):
+            dict1, dict2 = check_type(nest1.get(key), nest2.get(key))
+            difference[key] = {
+                'status': 'changed',
+                'value': walk(dict1, dict2)
+            }
+        else:
+            difference[key] = {
+                'status': '2diff_values',
+                'value': check_type(nest1.get(key), nest2.get(key))
+            }
+    return difference
+
+
 def parse(file1, file2):
-    def walk(nest1, nest2):
-        difference = {}
-
-        keys1 = set(nest1)
-        keys2 = set(nest2)
-
-        all_keys = keys1 | keys2
-        added = keys2 - keys1
-        deleted = keys1 - keys2
-
-        for key in sorted(all_keys):
-            if key in added:
-                difference[key] = {
-                    'status': 'added',
-                    'value': walk_unchanged(nest2.get(key))
-                }
-            elif key in deleted:
-                difference[key] = {
-                    'status': 'deleted',
-                    'value': walk_unchanged(nest1.get(key))
-                }
-            elif nest1.get(key) == nest2.get(key):
-                difference[key] = {
-                    'status': 'remaining',
-                    'value': walk_unchanged(nest1.get(key))
-                }
-            elif isinstance(check_type(nest1.get(key), nest2.get(key)), tuple):
-                dict1, dict2 = check_type(nest1.get(key), nest2.get(key))
-                difference[key] = {
-                    'status': 'changed',
-                    'value': walk(dict1, dict2)
-                }
-            else:
-                difference[key] = {
-                    'status': '2diff_values',
-                    'value': check_type(nest1.get(key), nest2.get(key))
-                }
-        return difference
     return walk(file1, file2)
