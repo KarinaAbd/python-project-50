@@ -1,7 +1,6 @@
-from gendiff import generate_diff
-from gendiff.formaters.formater_json import format_to_json
-from gendiff.formaters.formater_plain import plain
 import json
+
+from gendiff import generate_diff
 
 
 def test_generate_diff_in_plain_format():
