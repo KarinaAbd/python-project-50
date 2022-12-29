@@ -10,6 +10,8 @@ def get_normal(value):
         return "''"
     elif value == '[complex value]':
         return value
+    elif isinstance(value, int):
+        return value
     return f"'{str(value)}'"
 
 
