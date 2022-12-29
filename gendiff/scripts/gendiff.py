@@ -3,8 +3,6 @@
 import argparse
 
 from gendiff import generate_diff
-from gendiff.formaters.formater_json import format_to_json
-from gendiff.formaters.formater_plain import plain
 from gendiff.formaters.formater_stylish import stylish
 
 
