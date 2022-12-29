@@ -6,7 +6,10 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b57b3156f410b50dcbe3/test_coverage)](https://codeclimate.com/github/KarinaAbd/python-project-50/test_coverage)
 
 **How to compare 2 files**  
-Use command *gendiff* and specify pathes to files.  
-Files could be in json or yaml formats, data in files could be flat or nested. 
+- Use command *gendiff* and specify pathes to files  
+- Files could be in json or yaml formats, data in files could be flat or nested  
+- Package coud be used as CLI utility or library  
+- Printing of differnce is possible in 2 formats: stylish or plain  
 
-[![asciicast](https://asciinema.org/a/Rr5Lj8JmQRIJTXlviyF4oHDsx.svg)](https://asciinema.org/a/Rr5Lj8JmQRIJTXlviyF4oHDsx)
+Watch video below to see all comands:
+[![asciicast](https://asciinema.org/a/jwekwtqdvfj53wu0A3AUIBAdM.svg)](https://asciinema.org/a/jwekwtqdvfj53wu0A3AUIBAdM)
