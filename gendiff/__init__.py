@@ -17,4 +17,4 @@ def generate_diff(file_path1, file_path2, format=stylish):
         return plain(difference_dictionary)
     elif format == 'json':
         return format_to_json(difference_dictionary)
-    return format(difference_dictionary)
+    return stylish(difference_dictionary)
