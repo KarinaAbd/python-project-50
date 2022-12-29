@@ -13,8 +13,9 @@ def generate_diff(file_path1, file_path2, format=stylish):
         file1, file2 = convert_yaml(file_path1, file_path2)
 
     difference_dictionary = parse(file1, file2)
+
     if format == 'plain':
         return plain(difference_dictionary)
     elif format == 'json':
         return format_to_json(difference_dictionary)
-    return stylish(difference_dictionary)
+    return format(difference_dictionary)
