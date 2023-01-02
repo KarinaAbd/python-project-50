@@ -1,30 +1,12 @@
 #!/usr/bin/env python3
 
-import argparse
-
 from gendiff import generate_diff
-from gendiff.formaters.formater_stylish import stylish
+from gendiff.cli import parse_arguments
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description='Compares two configuration files and shows a difference.'
-    )
-    parser.add_argument('first_file')
-    parser.add_argument('second_file')
-    parser.add_argument(
-        '-f', '--format', default=stylish, help='set format of output'
-    )
-    args = parser.parse_args()
-
-    if args.format == 'plain':
-        diff = generate_diff(args.first_file, args.second_file, 'plain')
-    elif args.format == 'json':
-        diff = generate_diff(
-            args.first_file, args.second_file, 'json'
-        )
-    else:
-        diff = generate_diff(args.first_file, args.second_file, format=stylish)
+    first_file, second_file, format = parse_arguments()
+    diff = generate_diff(first_file, second_file, format=format)
 
     print(diff)
 
