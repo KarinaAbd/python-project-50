@@ -3,16 +3,15 @@ DOT = '.'
 
 def get_normal(value):
     if isinstance(value, bool):
-        result = str(value).lower()
-    elif value is None:
-        result = 'null'
-    elif value == '':
-        result = "''"
-    elif value == '[complex value]' or isinstance(value, int):
-        result = value
+        return str(value).lower()
+    if value is None:
+        return 'null'
+    if value == '':
+        return "''"
+    if value == '[complex value]' or isinstance(value, int):
+        return value
     else:
-        result = f"'{str(value)}'"
-    return result
+        return f"'{str(value)}'"
 
 
 def check(value):
