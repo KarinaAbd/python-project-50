@@ -1,6 +1,18 @@
-from gendiff.converter import convert_file_to_python
+import json
+import yaml
 from gendiff.formaters import design
 from gendiff.parsing import parse
+
+
+__all__ = ['generate_diff']
+
+
+def convert_file_to_python(file):
+    with open(f'{file}') as input:
+        if file.endswith('json'):
+            return json.load(input)
+        else:
+            return yaml.safe_load(input)
 
 
 def generate_diff(file_path1, file_path2, format='stylish'):
