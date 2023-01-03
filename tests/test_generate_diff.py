@@ -2,27 +2,18 @@ import pytest
 from gendiff import generate_diff
 
 
-JSON1 = './tests/fixtures/file1.json'
-JSON2 = './tests/fixtures/file2.json'
-YAML1 = './tests/fixtures/file1.yml'
-YAML2 = './tests/fixtures/file2.yml'
-RESULT = './tests/fixtures/result.txt'
-
-
-JSON1_N = './tests/fixtures/file1_nested.json'
-JSON2_N = './tests/fixtures/file2_nested.json'
-YAML1_N = './tests/fixtures/file1_nested.yml'
-YAML2_N = './tests/fixtures/file2_nested.yml'
-RESULT_N = './tests/fixtures/result_nested.txt'
+def get_full_path(file_name):
+    return f'./tests/fixtures/{file_name}'
 
 
 @pytest.mark.parametrize('input1, input2, expected', [
-    (JSON1, JSON2, RESULT),
-    (YAML1, YAML2, RESULT),
-    (JSON1_N, JSON2_N, RESULT_N),
-    (YAML1_N, YAML2_N, RESULT_N)
+    ('file1.json', 'file2.json', 'result.txt'),
+    ('file1.yml', 'file2.yml', 'result.txt'),
+    ('file1_nested.json', 'file2_nested.json', 'result_nested.txt'),
+    ('file1_nested.yml', 'file2_nested.yml', 'result_nested.txt')
 ])
 def test_generate_diff(input1, input2, expected):
-    result = generate_diff(input1, input2)
-    correct = open(expected)
+    file1, file2 = map(get_full_path, (input1, input2))
+    result = generate_diff(file1, file2)
+    correct = open(get_full_path(expected))
     assert result == correct.read()
