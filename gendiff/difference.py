@@ -22,8 +22,8 @@ def check_type(item1, item2):
         return item1, item2
 
 
-def parse(file1, file2):
-    difference = {}
+def get_dict_of_differences(file1, file2):
+    differences = {}
 
     keys1 = set(file1)
     keys2 = set(file2)
@@ -34,27 +34,27 @@ def parse(file1, file2):
 
     for key in sorted(all_keys):
         if key in added:
-            difference[key] = {
+            differences[key] = {
                 'status': 'added',
                 'value': walk_unchanged(file2.get(key))
             }
         elif key in deleted:
-            difference[key] = {
+            differences[key] = {
                 'status': 'deleted',
                 'value': walk_unchanged(file1.get(key))
             }
         elif file1.get(key) == file2.get(key):
-            difference[key] = {
+            differences[key] = {
                 'value': walk_unchanged(file1.get(key))
             }
         elif isinstance(check_type(file1.get(key), file2.get(key)), tuple):
             dict1, dict2 = check_type(file1.get(key), file2.get(key))
-            difference[key] = {
-                'value': parse(dict1, dict2)
+            differences[key] = {
+                'value': get_dict_of_differences(dict1, dict2)
             }
         else:
-            difference[key] = {
+            differences[key] = {
                 'status': 'updated',
                 'value': check_type(file1.get(key), file2.get(key))
             }
-    return difference
+    return differences
