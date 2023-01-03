@@ -1,4 +1,3 @@
-
 def walk_unchanged(nest):
     if not isinstance(nest, dict):
         return nest

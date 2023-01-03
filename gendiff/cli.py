@@ -1,7 +1,5 @@
 import argparse
 
-# from gendiff.formaters.formater_stylish import stylish
-
 
 def parse_arguments():
     parser = argparse.ArgumentParser(

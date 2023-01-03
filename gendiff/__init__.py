@@ -1,10 +1,11 @@
-import json
-import yaml
-from gendiff.formaters import design
-from gendiff.difference import get_dict_of_differences
-
-
 __all__ = ['generate_diff']
+
+import json
+
+import yaml
+
+from gendiff.difference import get_dict_of_differences
+from gendiff.formaters import design
 
 
 def parse_file(file_path):
