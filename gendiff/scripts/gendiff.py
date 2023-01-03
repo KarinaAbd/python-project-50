@@ -5,9 +5,12 @@ from gendiff.cli import parse_arguments
 
 
 def main():
-    first_file, second_file, format = parse_arguments()
-    diff = generate_diff(first_file, second_file, format)
-
+    arguments = parse_arguments()
+    diff = generate_diff(
+        arguments.first_file,
+        arguments.second_file,
+        arguments.format
+    )
     print(diff)
 
 
