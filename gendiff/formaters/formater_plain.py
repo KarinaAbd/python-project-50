@@ -1,17 +1,20 @@
 DOT = '.'
 
 
-def get_normal(value):
+def to_str(value, path):
+    if isinstance(value, dict):
+        return walk(value, path)
     if isinstance(value, bool):
-        return str(value).lower()
-    if value is None:
-        return 'null'
-    if value == '':
-        return "''"
-    if value == '[complex value]' or isinstance(value, int):
-        return value
+        result = str(value).lower()
+    elif value is None:
+        result = 'null'
+    elif value == '':
+        result = "''"
+    elif value == '[complex value]' or isinstance(value, int):
+        result = value
     else:
-        return f"'{str(value)}'"
+        result = f"'{str(value)}'"
+    return result
 
 
 def check(value):
@@ -20,10 +23,7 @@ def check(value):
     return value
 
 
-def walk(difference_dict, path):  # noqa: C901
-    if not isinstance(difference_dict, dict):
-        return get_normal(difference_dict)
-
+def walk(difference_dict, path):
     lines = []
 
     for key, diff_info in difference_dict.items():
@@ -31,7 +31,7 @@ def walk(difference_dict, path):  # noqa: C901
         status = diff_info.get('status')
 
         if status == 'added':
-            value = walk(check(value), path + DOT)
+            value = to_str(check(value), path + DOT)
             phrase = ' was added with value: '
             lines.append(
                 f"Property '{path + key}'{phrase}{value}"
@@ -44,8 +44,8 @@ def walk(difference_dict, path):  # noqa: C901
 
         elif status == 'updated':
             value1, value2 = value
-            value1 = walk(check(value1), path + DOT)
-            value2 = walk(check(value2), path + DOT)
+            value1 = to_str(check(value1), path + DOT)
+            value2 = to_str(check(value2), path + DOT)
             item = path + key
 
             lines.append(
