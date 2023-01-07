@@ -1,10 +1,7 @@
 import pytest
 
 from gendiff import generate_diff
-
-
-def get_full_path(file_name):
-    return f'./tests/fixtures/{file_name}'
+from tests import get_full_path
 
 
 @pytest.mark.parametrize('input1, input2, expected', [
@@ -16,5 +13,5 @@ def get_full_path(file_name):
 def test_generate_diff(input1, input2, expected):
     file1, file2 = map(get_full_path, (input1, input2))
     result = generate_diff(file1, file2)
-    correct = open(get_full_path(expected))
-    assert result == correct.read()
+    with open(f'{get_full_path(expected)}') as correct:
+        assert result == correct.read()
