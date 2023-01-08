@@ -21,8 +21,10 @@ def walk(diff_dict, level):
     lines = []
 
     for key, diff_info in diff_dict.items():
-        value = diff_info.get('value')
-        status = diff_info.get('status')
+        value = diff_info if not isinstance(diff_info, dict) \
+            else diff_info.get('value', diff_info)
+        status = '' if not isinstance(diff_info, dict) \
+            else diff_info.get('status')
 
         if status == 'added':
             lines.append(
