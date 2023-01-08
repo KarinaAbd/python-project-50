@@ -8,6 +8,8 @@ def to_str(value):
         result = 'null'
     elif isinstance(value, dict):
         result = '[complex value]'
+    elif isinstance(value, int):
+        result = value
     else:
         result = f"'{str(value)}'"
     return result
