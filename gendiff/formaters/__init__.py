@@ -4,12 +4,13 @@ from gendiff.formaters.formater_plain import plain
 from gendiff.formaters.formater_stylish import stylish
 
 
-def design(intermediate_representation, style):
+def reformat(intermediate_representation, formatter_name):
     # There are three available formats for presentation of files differences.
-    if style == 'plain':
+    if formatter_name == 'stylish':
+        return stylish(intermediate_representation)
+    if formatter_name == 'plain':
         return plain(intermediate_representation)
-    elif style == 'json':
+    if formatter_name == 'json':
         return json.dumps(intermediate_representation, indent=4)
     else:
-        # Use default format 'stylish'.
-        return stylish(intermediate_representation)
+        raise Exception('Invalid format, choose from stylish, plain, json')
