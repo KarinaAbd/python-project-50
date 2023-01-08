@@ -8,7 +8,7 @@ test:
 	poetry run pytest
 
 test-cov:
-	poetry run pytest --cov
+	poetry run pytest --cov --cov-report term-missing
 
 package: build publish package-install
 
