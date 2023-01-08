@@ -15,7 +15,7 @@ def to_str(value):
     return result
 
 
-def walk(difference_dict, path):
+def plain(difference_dict, path=''):
     lines = []
 
     for key, diff_info in difference_dict.items():
@@ -44,10 +44,6 @@ def walk(difference_dict, path):
                 f"Property '{item}' was updated. From {value1} to {value2}"
             )
         elif isinstance(value, dict):
-            lines.append(walk(value, path + key + DOT))
+            lines.append(plain(value, path + key + DOT))
 
     return '\n'.join(lines)
-
-
-def plain(difference_dictionary):
-    return walk(difference_dictionary, '')

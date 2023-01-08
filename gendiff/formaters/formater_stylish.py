@@ -8,7 +8,7 @@ SP = '    '   # indent only from SPaces for unchanged elements
 
 def to_str(value, level):
     if isinstance(value, dict):
-        return walk(value, level)
+        return stylish(value, level)
     if isinstance(value, bool):
         return str(value).lower()
     if value is None:
@@ -16,7 +16,7 @@ def to_str(value, level):
     return str(value)
 
 
-def walk(diff_dict, level):
+def stylish(diff_dict, level=0):
     current_indent = SP * level
     lines = []
 
@@ -49,7 +49,3 @@ def walk(diff_dict, level):
 
     result = itertools.chain("{", lines, [current_indent + "}"])
     return '\n'.join(result)
-
-
-def stylish(difference_dictionary):
-    return walk(difference_dictionary, 0)
