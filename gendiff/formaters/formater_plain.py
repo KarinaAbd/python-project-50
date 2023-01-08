@@ -6,19 +6,11 @@ def to_str(value):
         result = str(value).lower()
     elif value is None:
         result = 'null'
-    elif value == '':
-        result = "''"
-    elif value == '[complex value]' or isinstance(value, int):
-        result = value
+    elif isinstance(value, dict):
+        result = '[complex value]'
     else:
         result = f"'{str(value)}'"
     return result
-
-
-def check(value):
-    if isinstance(value, dict):
-        return '[complex value]'
-    return value
 
 
 def walk(difference_dict, path):
@@ -29,7 +21,7 @@ def walk(difference_dict, path):
         status = diff_info.get('status')
 
         if status == 'added':
-            value = to_str(check(value))
+            value = to_str(value)
             phrase = ' was added with value: '
             lines.append(
                 f"Property '{path + key}'{phrase}{value}"
@@ -42,8 +34,8 @@ def walk(difference_dict, path):
 
         elif status == 'updated':
             value1, value2 = value
-            value1 = to_str(check(value1))
-            value2 = to_str(check(value2))
+            value1 = to_str(value1)
+            value2 = to_str(value2)
             item = path + key
 
             lines.append(
