@@ -12,5 +12,4 @@ def reformat(intermediate_representation, formatter_name):
         return plain(intermediate_representation)
     if formatter_name == 'json':
         return json.dumps(intermediate_representation, indent=4)
-    else:
-        raise Exception('Invalid format, choose from stylish, plain, json')
+    raise Exception('Invalid format, choose from stylish, plain, json')

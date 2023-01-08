@@ -9,11 +9,10 @@ def get_content(file_path):
     if file_path.endswith('.json'):
         with open(f'{file_path}') as input:
             return parse(input, 'json')
-    elif file_path.endswith('.yml') or file_path.endswith('.yaml'):
+    if file_path.endswith('.yml') or file_path.endswith('.yaml'):
         with open(f'{file_path}') as input:
             return parse(input, 'yaml')
-    else:
-        raise Exception('Comparison is available only for json and yaml files')
+    raise Exception('Comparison is available only for json and yaml files')
 
 
 def generate_diff(file_path1, file_path2, format='stylish'):

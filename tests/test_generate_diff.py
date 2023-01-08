@@ -15,3 +15,16 @@ def test_generate_diff(input1, input2, expected):
     result = generate_diff(file1, file2)
     with open(f'{get_full_path(expected)}') as correct:
         assert result == correct.read()
+
+
+@pytest.mark.parametrize('input1, input2', [
+    ('file1_nested.jsn', 'file2_nested.json'),
+    ('file1_nested.yml', 'file2_nested.yoml'),
+    ('file1_nested.yml', 'file2_nested')
+])
+def test_exception_in_generate_diff(input1, input2):
+    file1, file2 = map(get_full_path, (input1, input2))
+    with pytest.raises(Exception) as e:
+        generate_diff(file1, file2)
+    assert str(e.value) == \
+        'Comparison is available only for json and yaml files'
