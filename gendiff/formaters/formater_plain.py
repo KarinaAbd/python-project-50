@@ -10,7 +10,8 @@ def to_str(value):
         return '[complex value]'
     if isinstance(value, int):
         return value
-    return f"'{str(value)}'"
+    else:
+        return f"'{str(value)}'"
 
 
 def plain(difference_dict, path=''):
