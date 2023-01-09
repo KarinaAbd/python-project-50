@@ -6,5 +6,6 @@ import yaml
 def parse(content, format_name):
     if format_name == 'json':
         return json.load(content)
-    if format_name == 'yaml':  # pragma: no branch
+    if format_name == 'yaml':
         return yaml.safe_load(content)
+    raise Exception('Comparison is available only for json and yaml files')
