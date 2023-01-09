@@ -1,5 +1,5 @@
 def build_diff_tree(content1, content2):
-    differences = {}
+    diff_tree = {}
 
     keys1 = set(content1)
     keys2 = set(content2)
@@ -10,29 +10,29 @@ def build_diff_tree(content1, content2):
 
     for key in sorted(all_keys):
         if key in added:
-            differences[key] = {
+            diff_tree[key] = {
                 'status': 'added',
                 'value': content2.get(key)
             }
         elif key in deleted:
-            differences[key] = {
+            diff_tree[key] = {
                 'status': 'deleted',
                 'value': content1.get(key)
             }
         elif content1.get(key) == content2.get(key):
-            differences[key] = {
+            diff_tree[key] = {
                 'status': 'unchanged',
                 'value': content1.get(key)
             }
         elif isinstance(content1.get(key), dict) \
                 and isinstance(content2.get(key), dict):
-            differences[key] = {
+            diff_tree[key] = {
                 'status': 'nested',
                 'value': build_diff_tree(content1.get(key), content2.get(key))
             }
         else:
-            differences[key] = {
+            diff_tree[key] = {
                 'status': 'updated',
                 'value': [content1.get(key), content2.get(key)]
             }
-    return differences
+    return diff_tree
