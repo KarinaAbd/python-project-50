@@ -1,8 +1,8 @@
-def get_dict_of_differences(file1, file2):
+def build_diff_tree(content1, content2):
     differences = {}
 
-    keys1 = set(file1)
-    keys2 = set(file2)
+    keys1 = set(content1)
+    keys2 = set(content2)
 
     all_keys = keys1 | keys2
     added = keys2 - keys1
@@ -12,26 +12,27 @@ def get_dict_of_differences(file1, file2):
         if key in added:
             differences[key] = {
                 'status': 'added',
-                'value': file2.get(key)
+                'value': content2.get(key)
             }
         elif key in deleted:
             differences[key] = {
                 'status': 'deleted',
-                'value': file1.get(key)
+                'value': content1.get(key)
             }
-        elif file1.get(key) == file2.get(key):
+        elif content1.get(key) == content2.get(key):
             differences[key] = {
-                'value': file1.get(key)
+                'status': 'unchanged',
+                'value': content1.get(key)
             }
-        elif isinstance(file1.get(key), dict) \
-                and isinstance(file2.get(key), dict):
+        elif isinstance(content1.get(key), dict) \
+                and isinstance(content2.get(key), dict):
             differences[key] = {
                 'status': 'nested',
-                'value': get_dict_of_differences(file1.get(key), file2.get(key))
+                'value': build_diff_tree(content1.get(key), content2.get(key))
             }
         else:
             differences[key] = {
                 'status': 'updated',
-                'value': [file1.get(key), file2.get(key)]
+                'value': [content1.get(key), content2.get(key)]
             }
     return differences

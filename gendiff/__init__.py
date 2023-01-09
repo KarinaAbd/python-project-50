@@ -1,7 +1,7 @@
 __all__ = ['generate_diff']
 
-from gendiff.difference import get_dict_of_differences
-from gendiff.formaters import reformat
+from gendiff.difference import build_diff_tree
+from gendiff.formaters import apply_formatter
 from gendiff.parser import parse
 
 
@@ -22,7 +22,7 @@ def generate_diff(file_path1, file_path2, format='stylish'):
     format -- formatter name for presentation of files differences.
               There are 3 available formats: stylish (default), plain, json.
     '''
-    file1, file2 = map(get_content, (file_path1, file_path2))
-    difference_dictionary = get_dict_of_differences(file1, file2)
+    content1, content2 = map(get_content, (file_path1, file_path2))
+    diff_tree = build_diff_tree(content1, content2)
 
-    return reformat(difference_dictionary, format)
+    return apply_formatter(diff_tree, format)
