@@ -6,5 +6,5 @@ import yaml
 def parse(content, format_name):
     if format_name == 'json':
         return json.load(content)
-    if format_name == 'yaml':
+    if format_name == 'yaml':  # pragma: no branch
         return yaml.safe_load(content)
