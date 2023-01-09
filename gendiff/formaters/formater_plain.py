@@ -3,16 +3,14 @@ DOT = '.'
 
 def to_str(value):
     if isinstance(value, bool):
-        result = str(value).lower()
-    elif value is None:
-        result = 'null'
-    elif isinstance(value, dict):
-        result = '[complex value]'
-    elif isinstance(value, int):
-        result = value
-    else:
-        result = f"'{str(value)}'"
-    return result
+        return str(value).lower()
+    if value is None:
+        return 'null'
+    if isinstance(value, dict):
+        return '[complex value]'
+    if isinstance(value, int):
+        return value
+    return f"'{str(value)}'"
 
 
 def plain(difference_dict, path=''):
