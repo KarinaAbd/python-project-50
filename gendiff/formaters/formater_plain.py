@@ -35,9 +35,7 @@ def plain(difference_dict, path=''):
             )
 
         elif status == 'updated':
-            value1, value2 = value
-            value1 = to_str(value1)
-            value2 = to_str(value2)
+            value1, value2 = map(to_str, value)
             item = path + key
 
             lines.append(

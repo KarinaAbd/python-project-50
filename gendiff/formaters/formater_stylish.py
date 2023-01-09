@@ -23,6 +23,7 @@ def stylish(diff_dict, level=0):
     for key, diff_info in diff_dict.items():
         value = diff_info if not isinstance(diff_info, dict) \
             else diff_info.get('value', diff_info)
+
         status = '' if not isinstance(diff_info, dict) \
             else diff_info.get('status')
 
