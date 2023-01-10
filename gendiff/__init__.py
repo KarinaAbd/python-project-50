@@ -11,7 +11,7 @@ def get_content(file_path):
     _, extension = os.path.splitext(file_path)
 
     with open(f'{file_path}') as input:
-        return parse(input, extension)
+        return parse(input, extension[1:])
 
 
 def generate_diff(file_path1, file_path2, format='stylish'):
