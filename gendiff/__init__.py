@@ -1,17 +1,17 @@
 __all__ = ['generate_diff']
 
+import os
+
 from gendiff.difference import build_diff_tree
 from gendiff.formaters import apply_formatter
 from gendiff.parser import parse
 
 
 def get_content(file_path):
-    if file_path.endswith('.json'):
-        with open(f'{file_path}') as input:
-            return parse(input, 'json')
-    if file_path.endswith('.yml') or file_path.endswith('.yaml'):
-        with open(f'{file_path}') as input:
-            return parse(input, 'yaml')
+    _, extension = os.path.splitext(file_path)
+
+    with open(f'{file_path}') as input:
+        return parse(input, extension)
 
 
 def generate_diff(file_path1, file_path2, format='stylish'):
