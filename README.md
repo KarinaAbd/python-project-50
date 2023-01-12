@@ -11,20 +11,18 @@ This repository was created as part of [a Hexlet study project](https://ru.hexle
 - Package coud be used as CLI utility or library  
 - Printing of differnces is possible in 3 formats: stylish (default), plain or json
 
-## How to setup
+## How to install
 
 ```bash
-# clone repo
 git clone git@github.com:KarinaAbd/python-project-50.git
+cd python-project-50/
 # install poetry
 make install
-# install package
-make package-install
 ```
 
 ## How to use
 
-**Use command *gendiff* and specify pathes to files**  
+**Use command `gendiff` and specify pathes to files**  
   
 Comparison of two JSON files  
 [![asciicast](https://asciinema.org/a/wWWLfDDq7Uh0oeBKkgsj6DwOE.svg)](https://asciinema.org/a/wWWLfDDq7Uh0oeBKkgsj6DwOE)
