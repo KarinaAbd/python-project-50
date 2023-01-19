@@ -1,3 +1,4 @@
+
 # Study project No. 2 'Generate Diff'
 
 [![Actions Status](https://github.com/KarinaAbd/python-project-50/workflows/hexlet-check/badge.svg)](https://github.com/KarinaAbd/python-project-50/actions/workflows/hexlet-check.yml)
